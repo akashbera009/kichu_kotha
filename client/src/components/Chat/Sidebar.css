@@ -10,13 +10,18 @@
 
 .sidebar-header {
   padding: 20px;
-  background: white;
+  background: rgb(205, 203, 203);
   border-bottom: 1px solid #e1e5e9;
   display: flex;
-  align-items: center;
+  align-items: center;  
   justify-content: space-between;
+  border-radius: 2rem;
+  border: 1px solid #667eea;
+  margin-left: .3rem;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
+  bottom: 2.5rem;
+
 }
 
 .user-info {
@@ -133,8 +138,8 @@
   transition: all 0.2s ease;
 }
 .add-contact-btn-2{
-  position: absolute;
-  bottom: 5rem;
+  /* position: absolute;
+  bottom: 7rem; */
   width: 40px;
   height: 40px;
   display: flex;
@@ -164,7 +169,7 @@
 }
 
 .contacts-list {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   flex: 1;
   overflow-y: auto;
   padding: 0 10px;

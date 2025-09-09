@@ -42,12 +42,12 @@ const Sidebar = ({ contacts, onSelectUser, onAddContact, selectedUser, isOpen = 
       <div className="contacts-section">
         <div className="section-header">
           <h4>Contacts</h4>
-          {/* <button className="add-contact-btn" onClick={onAddContact} title="Add Contact">
+          <button className="add-contact-btn-2" onClick={onAddContact} title="Add Contact">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <line x1="12" y1="5" x2="12" y2="19"/>
               <line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
-          </button> */}
+          </button>
         </div>
 
         <div className="contacts-list">
@@ -91,7 +91,7 @@ const Sidebar = ({ contacts, onSelectUser, onAddContact, selectedUser, isOpen = 
           )}
         </div>
       </div>
-      <button
+      {/* <button
         className="add-contact-btn-2"
         onClick={onAddContact}
         title="Add Contact"
@@ -106,7 +106,7 @@ const Sidebar = ({ contacts, onSelectUser, onAddContact, selectedUser, isOpen = 
           <line x1="12" y1="5" x2="12" y2="19" />
           <line x1="5" y1="12" x2="19" y2="12" />
         </svg>
-      </button>
+      </button> */}
       <div className="sidebar-header">
         <div className="user-info">
           <div className="user-avatar">

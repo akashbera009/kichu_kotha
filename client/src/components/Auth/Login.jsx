@@ -63,7 +63,7 @@ const Login = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <h1 className="auth-title">kichu কথা</h1>
+          <h1 className="auth-title">কিছু কথা</h1>
           <p className="auth-subtitle">Welcome back! Please sign in to continue.</p>
         </div>
 
