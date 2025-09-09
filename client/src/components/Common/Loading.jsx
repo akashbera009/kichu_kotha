@@ -7,7 +7,7 @@ const Loading = () => {
     <div className="loading-container">
       <div className="loading-content">
         <div className="loading-spinner">
-          <div className="spinner"></div>
+         
         </div>
         <h2 className="loading-title">কিছু কথা</h2>
         <p className="loading-subtitle">Loading your conversations...</p>

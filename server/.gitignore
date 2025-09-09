@@ -3,4 +3,4 @@
 # Firebase keys
 
 server/config/serviceAccountKey.json
-*.json
+# *.json
