@@ -161,7 +161,7 @@
   
   .chat-area {
     width: 100%;
-    max-height: 95vh;
+    /* max-height: 95vh; */
   }
     .sidebar-toggle {
     display: block;
