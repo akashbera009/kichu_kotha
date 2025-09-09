@@ -1,0 +1,39 @@
+/* frontend/src/components/Logo/Logo.css */
+.logo-container {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text {
+  font-family: 'SolaimanLipi', 'Kalpurush', 'Siyam Rupali', Arial, sans-serif;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.logo-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+  letter-spacing: 1px;
+}
+
+/* Add font face for Bengali fonts */
+@font-face {
+  font-family: 'SolaimanLipi';
+  src: local('SolaimanLipi'), 
+       url('https://fonts.maateen.me/solaiman-lipi/font.css') format('truetype');
+}
+
+@font-face {
+  font-family: 'Kalpurush';
+  src: local('Kalpurush'), 
+       url('https://fonts.maateen.me/kalpurush/font.css') format('truetype');
+}
