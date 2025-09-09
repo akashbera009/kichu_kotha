@@ -2,6 +2,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { messageAPI } from '../../services/api';
 import './MessageInput.css';
+import axios from 'axios';
+
+
+const API_URL = import.meta.env.VITE_BACKEND_URL2 || 'https://kichu-kotha.onrender.com';
+
 
 const MessageInput = ({ onSendMessage, onTypingStart, onTypingStop }) => {
   const [message, setMessage] = useState('');
@@ -52,30 +57,69 @@ const MessageInput = ({ onSendMessage, onTypingStart, onTypingStop }) => {
     onTypingStop();
   };
 
- const handleFileUpload = async (e) => {
+//  const handleFileUpload = async (e) => {
+//   const file = e.target.files[0];
+//   if (!file) return;
+
+//   console.log('Selected file:', file); // Add this
+  
+//   setUploading(true);
+//   try {
+//     const formData = new FormData();
+//     formData.append('file', file);
+
+//     console.log('Uploading file...'); // Add this
+//     const response = await messageAPI.uploadFile(formData);
+//     console.log('Upload response:', response); // Add this
+    
+//     const fileUrl = response.data.url;
+
+//     const messageType = file.type.startsWith('image/') ? 'image' : 'audio';
+//     const messageData = {
+//       message: messageType === 'image' ? { image: fileUrl } : { audio: fileUrl },
+//       messageType
+//     };
+
+//     console.log('Sending message:', messageData); // Add this
+//     onSendMessage(messageData);
+//   } catch (error) {
+//     console.error('Error uploading file:', error);
+//     alert('Failed to upload file. Please try again.');
+//   } finally {
+//     setUploading(false);
+//     fileInputRef.current.value = '';
+//   }
+// };
+  
+const handleFileUpload = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
 
-  console.log('Selected file:', file); // Add this
-  
   setUploading(true);
   try {
     const formData = new FormData();
     formData.append('file', file);
+for (let [key, value] of formData.entries()) {
+  console.log(key, value);
+}
 
-    console.log('Uploading file...'); // Add this
-    const response = await messageAPI.uploadFile(formData);
-    console.log('Upload response:', response); // Add this
+
+    // ✅ direct API call
     
-    const fileUrl = response.data.url;
+    const response = await axios.post(`${API_URL}/api/messages/upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
 
+    const fileUrl = response.data.url;
     const messageType = file.type.startsWith('image/') ? 'image' : 'audio';
     const messageData = {
       message: messageType === 'image' ? { image: fileUrl } : { audio: fileUrl },
       messageType
     };
 
-    console.log('Sending message:', messageData); // Add this
     onSendMessage(messageData);
   } catch (error) {
     console.error('Error uploading file:', error);
@@ -85,7 +129,8 @@ const MessageInput = ({ onSendMessage, onTypingStart, onTypingStop }) => {
     fileInputRef.current.value = '';
   }
 };
-  const startRecording = async () => {
+
+const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorder = new MediaRecorder(stream);

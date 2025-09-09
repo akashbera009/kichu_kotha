@@ -26,6 +26,8 @@ const auth = async (req, res, next) => {
     }
 
     req.user = user;
+    console.log("this is" , user);
+    
     next();
   } catch (error) {
     return res.status(401).json({

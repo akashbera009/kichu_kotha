@@ -94,9 +94,17 @@ export const messageAPI = {
 
   uploadFile: (formData) => {
     return api.post('/messages/upload', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+
     });
   }
+//   uploadFile: (formData) => {
+//   return api.post('/messages/upload', formData);
+// }
+
 };
 
 export default api;

@@ -7,7 +7,7 @@ const {
   uploadFile 
 } = require('../controllers/messageController');
 const auth = require('../middleware/auth');
-const { upload } = require("../config/cloudinary");
+const upload = require("../config/multer.js");
 
 const router = express.Router();
 
@@ -21,6 +21,6 @@ router.get('/:userId/older', auth, getOlderMessages);
 router.patch('/:messageId/read', auth, markAsRead);
 
 // Upload file
-router.post('/upload', auth, upload.single('file'), uploadFile);
+// router.post('/upload', auth, upload.single('file'), uploadFile);
 
 module.exports = router;

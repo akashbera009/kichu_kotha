@@ -84,6 +84,8 @@
   border: 2px solid #e1e5e9;
   border-radius: 12px;
   font-size: 1rem;
+  color: black;
+  background-color: transparent;
   outline: none;
   transition: border-color 0.2s ease;
 }
