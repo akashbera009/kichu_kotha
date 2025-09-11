@@ -44,11 +44,13 @@
 
 .message-image {
   max-width: 250px;
+    max-width: 100%;
   max-height: 250px;
   border-radius: 12px;
   object-fit: cover;
   cursor: pointer;
   transition: transform 0.2s ease;
+  
 }
 
 .message-image:hover {
@@ -144,3 +146,207 @@
 }
 
 
+/* --- Thumbnail image in chat: responsive and never overflows --- */
+.message-image {
+  display: block;
+  width: auto;         /* let the image keep natural width up to max-width */
+  max-width: 250px;    /* thumbnail max size on desktop */
+  max-width: 100%;     /* ensure it never overflows the container */
+  height: auto;        /* preserve aspect ratio */
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+@media (max-width: 768px) {
+  .message-image {
+    max-width: 200px;
+  }
+}
+
+/* --- Modal backdrop --- */
+.image-modal {
+  position: fixed;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0; */
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: auto; /* allow scrolling if image is taller than viewport */
+  padding: 5px;  
+}
+
+/* inner container to hold toolbar + image; prevents backdrop clicks */
+.image-modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; /* modal content max width (adjust if needed) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* toolbar in top-right inside the inner container */
+.image-modal-toolbar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 1010;
+}
+
+/* close button styling */
+.image-modal-close {
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* hover accessibility */
+.image-modal-close:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* --- Modal image: full-width inside inner container, keep aspect ratio --- */
+/* Only width is forced; height remains auto so image scales proportionally. */
+.image-modal-original {
+  width: 100%;     /* image occupies full width of inner container */
+  height: auto;    /* do NOT set height: preserves aspect ratio */
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* If you want very large images to be scrollable inside the inner container vertically,
+   the outer .image-modal already has overflow:auto so the page will scroll.
+   Keep the image centered and let the user scroll as needed. */
+
+
+   /* -------------------------
+   Custom audio player styles
+   ------------------------- */
+.custom-audio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.03);
+  min-height: 44px;
+  user-select: none;
+}
+
+/* dark bubble variant */
+.own-message .custom-audio-wrapper {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+/* play/pause button */
+.custom-audio-play {
+  background: transparent;
+  fill: white;
+  /* background-color: red; */
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+/* progress container */
+.custom-audio-progress-wrap {
+  flex: 1 1 auto;
+  min-width: 120px;
+  max-width: 420px;
+  cursor: pointer;
+  outline: none;
+}
+.custom-audio-progress {
+  width: 100%;
+  height: 8px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.custom-audio-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6b7cff 0%, #8f6bff 100%);
+  width: 0%;
+  transition: width 0.05s linear;
+}
+
+/* time display */
+.custom-audio-time {
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.65);
+  white-space: nowrap;
+  margin-left: 6px;
+}
+
+/* volume button */
+.custom-audio-vol {
+  fill: white;
+  background: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+/* small screen tweaks */
+@media (max-width: 480px) {
+  .custom-audio-wrapper {
+    gap: 8px;
+    padding: 6px 8px;
+    min-height: 40px;
+  }
+  .custom-audio-play { width: 36px; height: 36px; }
+  .custom-audio-vol { width: 32px; height: 32px; }
+  .custom-audio-time { font-size: 0.72rem; display: none; } /* optionally hide time on very small screens */
+}
+
+/* -------------------------
+   Thumbnail safety (image)
+   ------------------------- */
+.message-image {
+  display: block;
+  width: auto;
+  max-width: 250px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
